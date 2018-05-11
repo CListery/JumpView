@@ -11,24 +11,28 @@ import android.widget.TextView;
  */
 
 public class TestActivity extends Activity {
-
+    
     private TextView mJumpTxt;
-
+    
     private JumpView mJumpView;
-
+    
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        
         setContentView(R.layout.activity_test);
-
+        
         mJumpView = (JumpView) findViewById(R.id.jump_view);
         mJumpView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mJumpView.stop();
+                if (mJumpView.isRunning()) {
+                    mJumpView.pause();
+                } else {
+                    mJumpView.resume();
+                }
             }
         });
     }
-
+    
 }
